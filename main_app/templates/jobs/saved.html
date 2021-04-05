@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Jobs Saved</h1>
+  {% for job in jobs %}
+    <div class="savedjob">
+      <p><b>{{ job.name }}</b></p>
+      <p>{{ job.comp }}</p>
+      <a class="btn" href="/jobs/saved/{{job.id}}">Detail</a>
+      &nbsp &nbsp
+      <a class="delete btn" href="{% url 'job_delete' job.id %}" style="background-color: rgb(196, 25, 25); padding: 0 10px;">DELETE</a>
+    </div>
+  {% endfor %}
+
+
+{% endblock %}

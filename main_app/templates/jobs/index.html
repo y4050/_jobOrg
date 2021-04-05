@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Choose A Category</h1>
+    <hr/>
+    {% for job in jobs %}
+      <a class="jobcat" href="/jobs/{{job.id}}">
+        <p><b>{{ job.name }}</b></p>
+      </a>
+        <hr/>
+    {% endfor %}
+
+
+{% endblock %}

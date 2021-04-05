@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Detail Page</h1>
+     <div class="row">
+       <div class="col s6">
+        <div class="card">
+          <div class="card-content">
+              <p>{{ jobs }}</p>
+              <a href="/jobs/detail/des/{{jobs.id}}">Check Job Description</a>
+            <!-- <p>{{ content }}</p> -->
+            
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}  

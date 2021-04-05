@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+  {% block content %}
+    <h1>{{ the_cat.name }}</h1>
+     <div class="row">
+       <div class="col s6">
+        <div class="card">
+          <div class="card-content">
+            {% for job in jobs %}
+              <br/>
+              <p><b>Position:</b> {{ job }}</p>
+              <p><b>Company:</b> {{ job.comp }}</p>
+              <br/>
+              <a class="btn" style="background-color: blue;" href="/jobs/save/{{job.id}}">Save Job</a> 
+              &nbsp;&nbsp;
+              <a class="btn" href="/jobs/detail/des/{{job.id}}" target="_blank">Check Job Description</a>
+              <br/>
+              &nbsp;
+              <hr/>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}  
