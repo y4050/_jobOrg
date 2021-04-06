@@ -19,6 +19,12 @@ class Jobs(models.Model):
     def __str__(self):
         return self.name
 
+class SavedCat(models.Model):
+    name = models.CharField(max_length=100, default='')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
+
 class Saved(models.Model):
     category = models.CharField(max_length=100, default='')
     name = models.CharField(max_length=100, default='')

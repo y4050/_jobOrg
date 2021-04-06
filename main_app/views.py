@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.forms.models import model_to_dict
 
 # import models
-from .models import JobsCat, Jobs, Saved, Note
+from .models import JobsCat, Jobs, Saved, Note, SavedCat
 # access the FeedingForm
 from .forms import NoteForm
 
@@ -46,12 +46,21 @@ def jobs_index(request):
   jobs_cat = JobsCat.objects.all()
   return render(request, 'jobs/index.html', { 'jobs': jobs_cat })
 
-
-
 def jobs_show(request, job_id):
-  # we get access to that cat_id variable
-  # query for the specific cat clicked
   the_cat = JobsCat.objects.get(id=job_id)
+  jobs = get_job_search(the_cat.name)
+  reset = Jobs.objects.all()
+  reset.delete()
+  for job in jobs:
+    Jobs.objects.create(category=the_cat.name, name=job, comp=jobs[job][0], link=jobs[job][1])
+  all_jobs = Jobs.objects.filter(category=the_cat.name)
+  return render(request, 'jobs/show.html', { 
+    'the_cat': the_cat,
+    'jobs' : all_jobs
+  })
+
+def jobs_show_cat(request, cat_id):
+  the_cat = SavedCat.objects.get(id=cat_id)
   jobs = get_job_search(the_cat.name)
   reset = Jobs.objects.all()
   reset.delete()
@@ -83,6 +92,11 @@ def saved_job_description(request, job_id):
   content = the_detail(the_link)
   return HttpResponse(content)
 
+def save_cat(request, job_id):
+  the_cat = JobsCat.objects.get(id=job_id)
+  SavedCat.objects.create(name=the_cat.name, user=request.user)
+  return redirect('cats_saved')
+
 def save_job(request, job_id):
   the_job = Jobs.objects.get(id=job_id)
   Saved.objects.create(category=the_job.category, name=the_job.name, comp=the_job.comp, link=the_job.link, user=request.user)
@@ -93,9 +107,18 @@ def jobs_saved(request):
   jobs = Saved.objects.filter(user= request.user)
   return render(request, 'jobs/saved.html', { 'jobs': jobs })
 
+@login_required()
+def cats_saved(request):
+  cats = SavedCat.objects.filter(user= request.user)
+  return render(request, 'jobs/saved_cats.html', { 'cats': cats })
+
 class JobDelete(DeleteView):
   model = Saved
   success_url = '/jobs/saved'
+
+class JobDelete(DeleteView):
+  model = SavedCat
+  success_url = '/jobs/savedcats'
 
 def selected_job(request, pk):
   the_job = Saved.objects.get(id=pk)
