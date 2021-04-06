@@ -24,9 +24,9 @@
         <ul class="right hide-on-med-and-down">
           <!-- <li><a href="{% url 'about' %}">About</a></li> -->
           {% if user.is_authenticated %}
+            <li><a href="{% url 'jobs' %}">Find Jobs</a></li>
             <li><a href="{% url 'jobs_saved' %}">Saved Jobs</a></li>
             <li><a href="{% url 'cats_saved' %}">Saved Categories</a></li>
-            <li><a href="{% url 'jobs' %}">Find Jobs</a></li>
             <li><a href="{% url 'logout' %}">Log out</a></li>
           {% else %}
             <li><a href="{% url 'signup' %}">Sign Up</a></li>

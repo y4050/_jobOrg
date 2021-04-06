@@ -4,11 +4,9 @@
   <h1>Saved Categories</h1>
   {% for cat in cats %}
     <div class="savedjob">
-      <a class="jobcat" href="/jobs/cat/{{cat.id}}">
-        <p><b>{{ cat.name }}</b></p>
-      </a>
-      <!-- <a class="btn" href="/jobs/saved/{{job.id}}">Detail</a> -->
-      &nbsp &nbsp
+      <p><b> &nbsp;&nbsp; {{ cat.name }}</b></p>
+      <a class="waves-effect waves-light btn-small" href="/jobs/cat/{{cat.id}}">Search This Category</a>
+      &nbsp;&nbsp;
       <a class="delete btn" href="{% url 'cat_delete' cat.id %}" style="background-color: rgb(196, 25, 25); padding: 0 10px;">DELETE</a>
     </div>
   {% endfor %}

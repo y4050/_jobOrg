@@ -20,17 +20,13 @@ a:hover {
   text-decoration: underline;
 }
 
-.jobcat:hover {
-  color: rgb(54, 74, 252);
-}
-
 .btn {
   padding: 2px;
   transition: all .3s ease-in-out;
-  text-decoration: underline;
   background-color: rgb(97, 163, 255);
   padding: 0 10px;
 }
+
 
 body {
   display: flex;

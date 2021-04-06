@@ -4,11 +4,13 @@
     <h1>Choose A Category</h1>
     <hr/>
     {% for job in jobs %}
-      <a class="jobcat" href="/jobs/{{job.id}}">
-        <p><b>{{ job.name }}</b></p>
-      </a>
-      <a class="btn" style="background-color: blue;" href="/jobs/save/cat/{{job.id}}">Save Category</a> 
-        <hr/>
+    <div class="savedjob">
+      <p><b> &nbsp;&nbsp; {{ job.name }}</b></p>
+      <br />
+      <a class="waves-effect waves-light btn-small" href="/jobs/{{job.id}}">Search This Category</a>
+      &nbsp;&nbsp; 
+      <a class="btn" href="/jobs/save/cat/{{job.id}}">Save Category</a> 
+    </div>
     {% endfor %}
 
 
