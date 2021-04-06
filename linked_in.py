@@ -22,7 +22,7 @@ def job_quick_search():
     driver = webdriver.Chrome(PATH, options=option)
     driver.get('https://linkedin.com')
     driver.find_element_by_xpath('//*[@id="main-content"]/section[2]/div/div[2]/div/div/label[1]/span[1]').click()
-    time.sleep(.5)
+    time.sleep(.1)
     content = driver.find_element_by_xpath('//*[@id="main-content"]/section[2]/div/div[2]/div').get_attribute('innerHTML')
     recommended_search = BeautifulSoup(content, 'lxml')
     result_list = recommended_search.find_all('a')
@@ -41,7 +41,7 @@ def get_job_search(field = 'Engineering'):
     job_search_list = job_quick_search()
     driver = webdriver.Chrome(PATH, options=option)
     driver.get(job_search_list[field])
-    time.sleep(.5)
+    time.sleep(.1)
     jobs_search = driver.find_element_by_xpath('//*[@id="main-content"]/div/section[2]/ul').get_attribute('innerHTML')
     search_content = BeautifulSoup(jobs_search, 'lxml')
     jobs_title = search_content.find_all('h3') # get the title - stored in h3
@@ -67,7 +67,7 @@ def get_job_search(field = 'Engineering'):
 def the_detail(the_link):
     driver = webdriver.Chrome(PATH, options=option)
     driver.get(the_link)
-    time.sleep(1)
+    time.sleep(.1)
     # driver.find_element_by_xpath('//*[@id="main-content"]/section[1]/section[3]/div/section/button[1]').click()
     content = driver.find_element_by_xpath('//*[@id="main-content"]/section[1]/section[3]').get_attribute('innerHTML')
     content2 = driver.find_element_by_xpath('//*[@id="main-content"]/section[1]/section[3]/div/section/div').get_attribute('innerHTML')
