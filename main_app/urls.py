@@ -17,7 +17,7 @@ urlpatterns = [
     path('jobs/saved/', views.jobs_saved, name='jobs_saved'),
     path('jobs/savedcats/', views.cats_saved, name='cats_saved'),
     path('jobs/<int:pk>/delete/', views.JobDelete.as_view(), name='job_delete'),
-    path('jobs/cat/<int:pk>/delete/', views.JobDelete.as_view(), name='cat_delete'),
+    path('jobs/cat/<int:pk>/delete/', views.CatDelete.as_view(), name='cat_delete'),
     path('jobs/saved/<int:pk>/', views.selected_job, name='selected_job'),
     path('jobs/saved/<int:pk>/add_note/', views.add_note, name='add_note'),
 ]

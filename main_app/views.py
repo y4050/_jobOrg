@@ -116,7 +116,7 @@ class JobDelete(DeleteView):
   model = Saved
   success_url = '/jobs/saved'
 
-class JobDelete(DeleteView):
+class CatDelete(DeleteView):
   model = SavedCat
   success_url = '/jobs/savedcats'
 
