@@ -18,7 +18,7 @@ from .models import JobsCat, Jobs, Saved, Note, SavedCat
 from .forms import NoteForm
 
 #### My Imports #####
-from linked_in import *
+from script import *
 
 
 # Create your views here.
