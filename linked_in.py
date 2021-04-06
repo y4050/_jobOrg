@@ -1,4 +1,7 @@
-from selenium import webdriver
+from selenium import webdriver   # for webdriver
+from selenium.webdriver.support.ui import WebDriverWait  # for implicit and explict waits
+from selenium.webdriver.chrome.options import Options  # for suppressing the browser
+
 import datetime, re, requests, io, time, random, string
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
@@ -6,12 +9,17 @@ client = MongoClient('localhost', 27017)
 
 PATH = "./chromedriver"
 
+option = webdriver.ChromeOptions()
+option.add_argument('headless')
+
+# driver = webdriver.Chrome('path/to/chromedriver',options=option)
+
 def testing():
     return 'tested successfully'
 
 # Create dict with name:links for job searches from linkedin site
 def job_quick_search():
-    driver = webdriver.Chrome(PATH)
+    driver = webdriver.Chrome(PATH, options=option)
     driver.get('https://linkedin.com')
     driver.find_element_by_xpath('//*[@id="main-content"]/section[2]/div/div[2]/div/div/label[1]/span[1]').click()
     time.sleep(.5)
@@ -31,7 +39,7 @@ def job_quick_search():
 
 def get_job_search(field = 'Engineering'):
     job_search_list = job_quick_search()
-    driver = webdriver.Chrome(PATH)
+    driver = webdriver.Chrome(PATH, options=option)
     driver.get(job_search_list[field])
     time.sleep(.5)
     jobs_search = driver.find_element_by_xpath('//*[@id="main-content"]/div/section[2]/ul').get_attribute('innerHTML')
@@ -57,7 +65,7 @@ def get_job_search(field = 'Engineering'):
 
 
 def the_detail(the_link):
-    driver = webdriver.Chrome(PATH)
+    driver = webdriver.Chrome(PATH, options=option)
     driver.get(the_link)
     time.sleep(1)
     # driver.find_element_by_xpath('//*[@id="main-content"]/section[1]/section[3]/div/section/button[1]').click()
